@@ -3,8 +3,8 @@ class SearchService
   def initialize(zip)
     @zip = zip
     @conn = Faraday.new(url: "https://developer.nrel.gov") do |faraday|
-  faraday.adapter Faraday.default_adapter
-end
+      faraday.adapter Faraday.default_adapter
+    end
   end
 
   def make_stations
@@ -18,10 +18,10 @@ end
   end
 
   def raw_results
-    conn.get("/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV["nrel_api_key"]}&location=#{zip}&radius=10&fuel_type=LPG,ELEC&limit=10").body
+    conn.get("/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV["nrel_api_key"]}&location=#{zip}&radius=6&fuel_type=LPG,ELEC&limit=10").body
   end
 
-private
+  private
 
-attr_reader :zip, :conn
+  attr_reader :zip, :conn
 end
