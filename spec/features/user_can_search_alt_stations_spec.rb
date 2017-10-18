@@ -7,7 +7,7 @@ feature "As a user" do
       VCR.use_cassette("station search") do
         visit "/"
 
-        fill_in "Zip", with: "80203"
+        fill_in "q", with: "80203"
         click_on "Locate"
 
         expect(current_path).to eq(search_path)
